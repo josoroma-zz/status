@@ -9,6 +9,13 @@ import StatusOverview from './statusOverview';
 
 import { ALL_STATUSES, PUBLIC_STATUSES, FRIEND_STATUSES } from '../constants';
 
+// Needed for onTouchTap
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+
 @observer
 export default class StatusApp extends React.Component {
 	render() {
@@ -16,6 +23,9 @@ export default class StatusApp extends React.Component {
 
 		return (
 			<div className="container">
+                <MuiThemeProvider>
+                    <RaisedButton label="Default" />
+                </MuiThemeProvider>
                 <StatusHeader statusStore={statusStore} viewStore={viewStore} />
                 <StatusEntry statusStore={statusStore} />
 				<StatusOverview statusStore={statusStore} viewStore={viewStore} />

@@ -9,6 +9,8 @@ import ViewStore from '../src/stores/ViewStore';
 import StatusApp from '../src/components/statusApp.js';
 import React from 'react';
 
+global.navigator = { userAgent: 'all' };
+
 const app = express();
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')))
 
@@ -22,6 +24,7 @@ app.use(webpackHotMiddleware(compiler));
 
 const renderFullPage = html => {
 	const initialState = { statuses };
+
 	return `
 	<!doctype html>
 	<html lang="utf-8">
@@ -41,7 +44,17 @@ const renderFullPage = html => {
 	`
 };
 
-let statuses = []; // Statuses are stored here
+// Statuses are going to be stored here.
+let statuses = [
+    {
+        id: 1,
+        title: `Here’s a selfie of my girl.`
+    },
+    {
+        id: 2,
+        title: `I’m done with this.”`
+    }
+];
 
 app.use(bodyParser.json());
 

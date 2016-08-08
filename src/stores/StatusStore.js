@@ -46,12 +46,6 @@ export default class StatusStore {
 		);
 	}
 
-	clearFriend () {
-		this.statuses = this.statuses.filter(
-			status => !status.friend
-		);
-	}
-
 	toJS() {
 		return this.statuses.map(status => status.toJS());
 	}
