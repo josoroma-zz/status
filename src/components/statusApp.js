@@ -13,23 +13,37 @@ import { ALL_STATUSES, PUBLIC_STATUSES, FRIEND_STATUSES } from '../constants';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import {green100, green500, green700} from 'material-ui/styles/colors';
+import AppBar from 'material-ui/AppBar';
 
 @observer
 export default class StatusApp extends React.Component {
 	render() {
 		const {statusStore, viewStore} = this.props;
 
+        const muiTheme = getMuiTheme({
+          palette: {
+            primary1Color: green500,
+            primary2Color: green700,
+            primary3Color: green100,
+          },
+        }, {
+          avatar: {
+            borderColor: null,
+          }
+        });
+
 		return (
-			<div className="container">
-                <MuiThemeProvider>
-                    <RaisedButton label="Default" />
-                </MuiThemeProvider>
-                <StatusHeader statusStore={statusStore} viewStore={viewStore} />
-                <StatusEntry statusStore={statusStore} />
-				<StatusOverview statusStore={statusStore} viewStore={viewStore} />
-			</div>
+            <MuiThemeProvider muiTheme={muiTheme}>
+    			<div className="container">
+                    <AppBar title="Josoroma" />
+                    <StatusHeader statusStore={statusStore} viewStore={viewStore} />
+                    <StatusEntry statusStore={statusStore} />
+    				<StatusOverview statusStore={statusStore} viewStore={viewStore} />
+    			</div>
+            </MuiThemeProvider>
 		);
 	}
 
