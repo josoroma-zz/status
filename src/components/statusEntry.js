@@ -2,18 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {observer} from 'mobx-react';
 
+import TextField from 'material-ui/TextField';
+
 const ENTER_KEY = 13;
 
 @observer
 export default class StatusEntry extends React.Component {
 	render() {
-		return (<input
-			ref="newField"
-			className="new-status"
-			placeholder="What's on your mind?"
-			onKeyDown={this.handleNewStatusKeyDown}
-			autoFocus={true}
-		/>);
+		return (<TextField
+                    ref="newField"
+                    className="new-status"
+                    autoFocus={true}
+                    hintText="What's on your mind?"
+                    onKeyDown={this.handleNewStatusKeyDown}
+                />);
 	}
 
 	handleNewStatusKeyDown = (event) => {
@@ -23,11 +25,12 @@ export default class StatusEntry extends React.Component {
 
 		event.preventDefault();
 
-		var val = ReactDOM.findDOMNode(this.refs.newField).value.trim();
+        // this.refs.newField.getValue()
+        var input = event.target.value;
 
-		if (val) {
-			this.props.statusStore.addStatus(val);
-			ReactDOM.findDOMNode(this.refs.newField).value = '';
+		if (input) {
+			this.props.statusStore.addStatus(input);
+			event.target.value = '';
 		}
 	};
 }

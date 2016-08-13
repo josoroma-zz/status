@@ -34,7 +34,7 @@ const renderFullPage = html => {
 			</script>
 		</head>
 		<body>
-			<section id="app-status" class="app-status">${html}</section>
+			<section id="app-status" class="app-status"><div>${html}</div></section>
             <script src="/static/bundle.js"></script>
             <footer class="info">
 				<p>Josoroma © 2016</p>
