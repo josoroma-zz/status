@@ -16,14 +16,16 @@ export default class StatusOverview extends React.Component {
 				onChange={this.toggleAll}
 				checked={statusStore.publicStatusCount === 0}
 			/>
-            
+
 			<ul className="status-list">
 				{this.getVisibleStatuses().map(status =>
-					(<StatusItem
-						key={status.id}
-						status={status}
-						viewStore={viewStore}
-					/>)
+					(
+            <StatusItem
+  						key={status.id}
+  						status={status}
+  						viewStore={viewStore}
+  					/>
+          )
 				)}
 			</ul>
 		</section>

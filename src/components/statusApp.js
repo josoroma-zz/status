@@ -16,7 +16,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 
-import { Flex, Box } from 'reflexbox'
+import { Grid, Flex, Box } from 'reflexbox'
 
 @observer
 export default class StatusApp extends React.Component {
@@ -27,9 +27,13 @@ export default class StatusApp extends React.Component {
       <MuiThemeProvider>
         <div className="container">
           <AppBar title="Josoroma" />
-          <StatusHeader statusStore={statusStore} viewStore={viewStore} />
-          <StatusEntry statusStore={statusStore} />
-          <StatusOverview statusStore={statusStore} viewStore={viewStore} />
+          <Flex align="center" justify="space-around">
+            <Box px={3}>
+              <StatusHeader statusStore={statusStore} viewStore={viewStore} />
+              <StatusEntry statusStore={statusStore} />
+              <StatusOverview statusStore={statusStore} viewStore={viewStore} />
+            </Box>
+          </Flex>
         </div>
       </MuiThemeProvider>
 		);
