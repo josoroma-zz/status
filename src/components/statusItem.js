@@ -18,7 +18,7 @@ export default class StatusItem extends React.Component {
 
 		this.state = {editText: props.status.title};
 
-        this.id = uniqueId('editField_');
+    this.id = uniqueId('editField_');
 	}
 
 	render() {
@@ -41,20 +41,22 @@ export default class StatusItem extends React.Component {
 						{status.title}
 					</label>
 
-                    <IconButton tooltip="Delete" onClick={this.handleDestroy}>
-                        <ActionDelete />
-                    </IconButton>
+          <IconButton tooltip="Delete" onClick={this.handleDestroy}>
+              <ActionDelete />
+          </IconButton>
 				</div>
 
-                <TextField
-                    ref="editField"
-                    className="edit"
-                    id={this.id}
-                    value={this.state.editText}
-                    onBlur={this.handleSubmit}
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleKeyDown}
-                />
+        <TextField
+          ref="editField"
+          className="edit"
+          id={this.id}
+          value={this.state.editText}
+          onBlur={this.handleSubmit}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          multiLine={true}
+          rows={1}
+        />
 			</li>
 		);
 	}
@@ -78,7 +80,7 @@ export default class StatusItem extends React.Component {
 	};
 
 	handleEdit = () => {
-        console.log('--- handleEdit ---');
+    console.log('--- handleEdit ---');
 
 		const status = this.props.status;
 		this.props.viewStore.statusBeingEdited = status;

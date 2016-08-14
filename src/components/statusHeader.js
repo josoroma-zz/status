@@ -13,7 +13,7 @@ export default class StatusHeader extends React.Component {
 
 		return (
 			<header>
-                <h1>Wall</h1>
+        <h1>Wall</h1>
 
 				<span className="status-count">
 					<strong>{statusStore.publicStatusCount}</strong> {publicStatusWord} public

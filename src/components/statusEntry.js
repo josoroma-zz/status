@@ -10,23 +10,19 @@ const ENTER_KEY = 13;
 export default class StatusEntry extends React.Component {
 	render() {
 		return (<TextField
-                    ref="newField"
-                    className="new-status"
-                    autoFocus={true}
-                    hintText="What's on your mind?"
-                    onKeyDown={this.handleNewStatusKeyDown}
-                />);
+      ref="newField"
+      className="new-status"
+      autoFocus={true}
+      hintText="What's on your mind?"
+      onBlur={this.handleNewStatus}
+      multiLine={true}
+      rows={1}
+    />);
 	}
 
-	handleNewStatusKeyDown = (event) => {
-		if (event.keyCode !== ENTER_KEY) {
-			return;
-		}
-
-		event.preventDefault();
-
-        // this.refs.newField.getValue()
-        var input = event.target.value;
+	handleNewStatus = (event) => {
+    // this.refs.newField.getValue()
+    var input = event.target.value;
 
 		if (input) {
 			this.props.statusStore.addStatus(input);
