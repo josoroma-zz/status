@@ -1,6 +1,5 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-
 import {Router} from 'director';
 
 import StatusHeader from './statusHeader';
@@ -15,7 +14,6 @@ injectTapEventPlugin();
 
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 @observer
@@ -24,7 +22,7 @@ export default class StatusApp extends React.Component {
 		const {statusStore, viewStore} = this.props;
 
 		return (
-            <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+            <MuiThemeProvider>
     			<div className="container">
                     <AppBar title="Josoroma" />
                     <StatusHeader statusStore={statusStore} viewStore={viewStore} />

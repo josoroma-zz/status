@@ -1,5 +1,12 @@
 import React from 'react';
+
 import {observer} from 'mobx-react';
+
+import IconButton from 'material-ui/IconButton';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import TextField from 'material-ui/TextField';
+
+import uniqueId from 'lodash/uniqueId';
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;
@@ -8,7 +15,10 @@ const ENTER_KEY = 13;
 export default class StatusItem extends React.Component {
 	constructor(props, context) {
 		super(props, context);
+
 		this.state = {editText: props.status.title};
+
+        this.id = uniqueId('editField_');
 	}
 
 	render() {
@@ -31,17 +41,20 @@ export default class StatusItem extends React.Component {
 						{status.title}
 					</label>
 
-					<button className="destroy" onClick={this.handleDestroy} />
+                    <IconButton tooltip="Delete" onClick={this.handleDestroy}>
+                        <ActionDelete />
+                    </IconButton>
 				</div>
 
-				<input
-					ref="editField"
-					className="edit"
-					value={this.state.editText}
-					onBlur={this.handleSubmit}
-					onChange={this.handleChange}
-					onKeyDown={this.handleKeyDown}
-				/>
+                <TextField
+                    ref="editField"
+                    className="edit"
+                    id={this.id}
+                    value={this.state.editText}
+                    onBlur={this.handleSubmit}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                />
 			</li>
 		);
 	}
@@ -65,6 +78,8 @@ export default class StatusItem extends React.Component {
 	};
 
 	handleEdit = () => {
+        console.log('--- handleEdit ---');
+
 		const status = this.props.status;
 		this.props.viewStore.statusBeingEdited = status;
         this.setState({editText: status.title});
