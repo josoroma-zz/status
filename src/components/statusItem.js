@@ -2,9 +2,17 @@ import React from 'react';
 
 import {observer} from 'mobx-react';
 
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import TextField from 'material-ui/TextField';
+
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import uniqueId from 'lodash/uniqueId';
 
@@ -25,39 +33,40 @@ export default class StatusItem extends React.Component {
 		const {viewStore, status} = this.props;
 
 		return (
-			<li className={[
+			<Card className={[
 				status.friend ? "friend": "",
 				status === viewStore.statusBeingEdited ? "editing" : ""
 			].join(" ")}>
-				<div className="view">
-					<input
-						className="toggle"
-						type="checkbox"
-						checked={status.friend}
-						onChange={this.handleToggle}
-					/>
-
-					<label onDoubleClick={this.handleEdit}>
-						{status.title}
-					</label>
-
-          <IconButton tooltip="Delete" onClick={this.handleDestroy}>
-              <ActionDelete />
-          </IconButton>
-				</div>
-
-        <TextField
-          ref="editField"
-          className="edit"
-          id={this.id}
-          value={this.state.editText}
-          onBlur={this.handleSubmit}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          multiLine={true}
-          rows={1}
-        />
-			</li>
+        <IconMenu
+          iconButtonElement={
+            <IconButton><MoreVertIcon /></IconButton>
+          }
+          targetOrigin={{horizontal: 'right', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        >
+          <MenuItem
+            primaryText="Private"
+            onClick={this.handleToggle}
+          />
+          <MenuItem
+            primaryText="Delete"
+            onClick={this.handleDestroy}
+          />
+        </IconMenu>
+        <CardText>
+          <TextField
+            ref="editField"
+            className="edit"
+            id={this.id}
+            value={this.state.editText}
+            onBlur={this.handleSubmit}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            multiLine={true}
+            rows={1}
+          />
+        </CardText>
+			</Card>
 		);
 	}
 
@@ -77,14 +86,6 @@ export default class StatusItem extends React.Component {
 	handleDestroy = () => {
 		this.props.status.destroy();
 		this.props.viewStore.statusBeingEdited = null;
-	};
-
-	handleEdit = () => {
-    console.log('--- handleEdit ---');
-
-		const status = this.props.status;
-		this.props.viewStore.statusBeingEdited = status;
-        this.setState({editText: status.title});
 	};
 
 	handleKeyDown = (event) => {
