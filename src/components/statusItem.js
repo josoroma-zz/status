@@ -3,6 +3,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
@@ -66,6 +67,9 @@ export default class StatusItem extends React.Component {
             rows={1}
           />
         </CardText>
+        <CardActions>
+          <FlatButton label="Save" />
+        </CardActions>
 			</Card>
 		);
 	}

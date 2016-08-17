@@ -10,14 +10,7 @@ export default class StatusOverview extends React.Component {
 		const {statusStore, viewStore} = this.props;
 
 		return <section className="main">
-			<input
-				className="toggle-all"
-				type="checkbox"
-				onChange={this.toggleAll}
-				checked={statusStore.publicStatusCount === 0}
-			/>
-
-			<ul className="status-list">
+			<div className="status-list">
 				{this.getVisibleStatuses().map(status =>
 					(
             <StatusItem
@@ -27,7 +20,11 @@ export default class StatusOverview extends React.Component {
   					/>
           )
 				)}
-			</ul>
+			</div>
+
+      <footer>
+        2016
+      </footer>
 		</section>
 	}
 

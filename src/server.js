@@ -26,21 +26,22 @@ const renderFullPage = html => {
 	const initialState = { statuses };
 
 	return `
-	<!doctype html>
-	<html lang="utf-8">
-		<head>
-            <script>
-				window.initialState = ${JSON.stringify(initialState)}
-			</script>
-		</head>
-		<body>
-			<section id="app-status" class="app-status"><div>${html}</div></section>
-            <script src="/static/bundle.js"></script>
-            <footer class="info">
-				<p>Josoroma © 2016</p>
-			</footer>
-		</body>
-	</html>
+    <!doctype html>
+    <html lang="utf-8">
+      <head>
+        <script>
+          window.initialState = ${JSON.stringify(initialState)}
+        </script>
+      </head>
+      <body>
+        <section id="app-status" class="app-status">
+          <div>
+            ${html}
+          </div>
+        </section>
+        <script src="/static/bundle.js"></script>
+      </body>
+    </html>
 	`
 };
 
