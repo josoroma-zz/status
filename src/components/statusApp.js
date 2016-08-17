@@ -25,7 +25,7 @@ export default class StatusApp extends React.Component {
 
     const styles = {
       box: {
-        width: '500px'
+        width: '600px'
       }
     };
 
@@ -34,7 +34,7 @@ export default class StatusApp extends React.Component {
         <div className="container">
           <AppBar title="Josoroma" />
           <Flex align="center" justify="space-around">
-            <Box px={3} style={styles.box}>
+            <Box style={styles.box} px={3}>
               <StatusHeader statusStore={statusStore} viewStore={viewStore} />
               <StatusEntry statusStore={statusStore} />
               <StatusOverview statusStore={statusStore} viewStore={viewStore} />

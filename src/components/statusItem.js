@@ -33,8 +33,14 @@ export default class StatusItem extends React.Component {
 	render() {
 		const {viewStore, status} = this.props;
 
+    const styles = {
+      card: {
+        margin: '24px'
+      }
+    };
+
 		return (
-			<Card className={[
+			<Card style={styles.card} className={[
 				status.friend ? "friend": "",
 				status === viewStore.statusBeingEdited ? "editing" : ""
 			].join(" ")}>

@@ -18,8 +18,16 @@ export default class StatusEntry extends React.Component {
 
 	render() {
 
+    const styles = {
+      card: {
+        padding: '16px',
+        'marginLeft': '24px',
+        'marginRight': '24px'
+      }
+    };
+
 		return (
-      <Card>
+      <Card style={styles.card}>
         <TextField
           ref="newField"
           className="new-status"
