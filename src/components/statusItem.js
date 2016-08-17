@@ -63,6 +63,7 @@ export default class StatusItem extends React.Component {
             onBlur={this.handleSubmit}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            fullWidth={true}
             multiLine={true}
             rows={1}
           />

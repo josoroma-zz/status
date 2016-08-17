@@ -23,12 +23,18 @@ export default class StatusApp extends React.Component {
 	render() {
 		const {statusStore, viewStore} = this.props;
 
+    const styles = {
+      box: {
+        width: '500px'
+      }
+    };
+
 		return (
       <MuiThemeProvider>
         <div className="container">
           <AppBar title="Josoroma" />
           <Flex align="center" justify="space-around">
-            <Box px={3}>
+            <Box px={3} style={styles.box}>
               <StatusHeader statusStore={statusStore} viewStore={viewStore} />
               <StatusEntry statusStore={statusStore} />
               <StatusOverview statusStore={statusStore} viewStore={viewStore} />

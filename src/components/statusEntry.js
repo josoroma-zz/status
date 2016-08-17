@@ -17,6 +17,7 @@ export default class StatusEntry extends React.Component {
   }
 
 	render() {
+
 		return (
       <Card>
         <TextField
@@ -26,8 +27,9 @@ export default class StatusEntry extends React.Component {
           hintText="What's on your mind?"
           value={this.state.entryText}
           onChange={this.handleChange}
+          fullWidth={true}
           multiLine={true}
-          rows={1}
+          rows={2}
         />
         <CardActions>
           <FlatButton onClick={this.handleNewStatusAction} label="Save" />
