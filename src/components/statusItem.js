@@ -36,6 +36,17 @@ export default class StatusItem extends React.Component {
     const styles = {
       card: {
         margin: '24px'
+      },
+      cardActions: {
+        textAlign: 'right'
+      },
+      iconMenu: {
+        float: 'right'
+      },
+      flatButton: {
+        top: '-18px',
+        backgroundColor: "#2196F3",
+        hoverColor: "#03A9F4"
       }
     };
 
@@ -44,7 +55,7 @@ export default class StatusItem extends React.Component {
 				status.friend ? "friend": "",
 				status === viewStore.statusBeingEdited ? "editing" : ""
 			].join(" ")}>
-        <IconMenu
+        <IconMenu style={styles.iconMenu}
           iconButtonElement={
             <IconButton><MoreVertIcon /></IconButton>
           }
@@ -74,8 +85,11 @@ export default class StatusItem extends React.Component {
             rows={1}
           />
         </CardText>
-        <CardActions>
-          <FlatButton label="Save" />
+        <CardActions style={styles.cardActions}>
+          <FlatButton
+            style={styles.flatButton}
+            label="Save"
+          />
         </CardActions>
 			</Card>
 		);

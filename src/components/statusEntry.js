@@ -23,6 +23,14 @@ export default class StatusEntry extends React.Component {
         padding: '16px',
         'marginLeft': '24px',
         'marginRight': '24px'
+      },
+      cardActions: {
+        textAlign: 'right'
+      },
+      flatButton: {
+        marginRight: '-8px',
+        backgroundColor: "#FF1744",
+        hoverColor: "#F50057"
       }
     };
 
@@ -39,8 +47,12 @@ export default class StatusEntry extends React.Component {
           multiLine={true}
           rows={2}
         />
-        <CardActions>
-          <FlatButton onClick={this.handleNewStatusAction} label="Save" />
+        <CardActions style={styles.cardActions}>
+          <FlatButton
+            style={styles.flatButton}
+            onClick={this.handleNewStatusAction}
+            label="Save"
+          />
         </CardActions>
     </Card>
     );
