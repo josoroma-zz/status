@@ -4,6 +4,7 @@
   "description": "Wall messages implementation based on React and friends.",
   "scripts": {
     "start": "node bin/server.js",
+    "build": "node bin/server.js",
     "lint": "eslint src"
   },
   "repository": {

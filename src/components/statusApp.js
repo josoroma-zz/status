@@ -2,15 +2,23 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import {Router} from 'director';
 
+// Needed for onTouchTap
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import StatusHeader from './statusHeader';
 import StatusEntry from './statusEntry';
 import StatusOverview from './statusOverview';
 
 import { ALL_STATUSES, PUBLIC_STATUSES, FRIEND_STATUSES } from '../constants';
 
-// Needed for onTouchTap
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+import merge from 'lodash/merge';
+
+import {grey900} from 'material-ui/styles/colors';
+import {grey50} from 'material-ui/styles/colors';
+import {blue700} from 'material-ui/styles/colors';
+import {blue800} from 'material-ui/styles/colors';
+import {fullWhite} from 'material-ui/styles/colors';
 
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -21,35 +29,36 @@ import { Grid, Flex, Box } from 'reflexbox'
 
 @observer
 export default class StatusApp extends React.Component {
-    static childContextTypes = {
-      reflexbox: React.PropTypes.object
-    }
-
-    getChildContext () {
-      return {
-        reflexbox: {
-          breakpoints: {
-            sm: '(min-width: 30em)',
-            md: '(min-width: 48em)',
-            lg: '(min-width: 60em)'
-          }
-        }
-      }
-    }
-
 	render() {
 		const {statusStore, viewStore} = this.props;
 
-    const styles = {
-      container: {
-        backgroundColor: 'rgb(48, 48, 48)'
+    const themeSettings = {
+      appBar:{
+        color: grey900,
+        textColor: fullWhite
+      },
+      flatButton: {
+        buttonFilterColor: blue700,
+        color: blue800,
+        fontSize: 11,
+        fontWeight: 500
       }
     };
 
+    const styles = {
+      container: {
+        backgroundColor: grey900
+      }
+    };
+
+    let theme = getMuiTheme(darkBaseTheme);
+
+    merge(theme, themeSettings);
+
 		return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <MuiThemeProvider muiTheme={theme}>
         <div className="container" style={styles.container}>
-          <AppBar title="Josoroma" />
+          <AppBar title="Wall" />
           <Flex align="center" justify="space-around">
             <Box col={12} sm={12} md={6} p={0} m={0}>
               <StatusHeader statusStore={statusStore} viewStore={viewStore} />
@@ -66,7 +75,7 @@ export default class StatusApp extends React.Component {
 		var viewStore = this.props.viewStore;
 
 		var router = Router({
-			'/': function() { viewStore.statusFilter = ALL_STATUSES; },
+			'/':       function() { viewStore.statusFilter = ALL_STATUSES; },
 			'/public': function() { viewStore.statusFilter = PUBLIC_STATUSES; },
 			'/friend': function() { viewStore.statusFilter = FRIEND_STATUSES; }
 		});

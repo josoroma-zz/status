@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {observer} from 'mobx-react';
 
+import {redA400} from 'material-ui/styles/colors';
+import {pinkA400} from 'material-ui/styles/colors';
+
 import {Card, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
@@ -29,8 +32,8 @@ export default class StatusEntry extends React.Component {
       },
       flatButton: {
         marginRight: '-8px',
-        backgroundColor: "#FF1744",
-        hoverColor: "#F50057"
+        backgroundColor: redA400,
+        hoverColor: pinkA400
       }
     };
 

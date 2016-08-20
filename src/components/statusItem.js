@@ -44,9 +44,7 @@ export default class StatusItem extends React.Component {
         float: 'right'
       },
       flatButton: {
-        top: '-18px',
-        backgroundColor: "#2196F3",
-        hoverColor: "#03A9F4"
+        top: '-18px'
       }
     };
 
