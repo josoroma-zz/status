@@ -99,6 +99,6 @@ process.on('uncaughtException', evt => {
 	console.log('Exception: ', evt);
 });
 
-app.listen(3000, function(){
-	console.log('Open http://localhost:3000' + '\n');
+app.listen(80, function() {
+	console.log('heroku open' + '\n');
 });

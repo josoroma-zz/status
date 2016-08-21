@@ -18,7 +18,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('example.css', { allChunks: true }),
+    new ExtractTextPlugin('bundle.css', { allChunks: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
