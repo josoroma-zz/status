@@ -49,11 +49,36 @@ const renderFullPage = html => {
 let statuses = [
     {
         id: 1,
-        title: `Here’s a selfie of my girl.`
+        title: `A Spoonful of Sugar.`,
+        friend: false
     },
     {
         id: 2,
-        title: `I’m done with this.”`
+        title: `A box of chocolates.`,
+        friend: false
+    },
+    {
+        id: 3,
+        title: `Funny pictures of people shopping.`,
+        friend: false
+    }
+    ,
+    {
+        id: 4,
+        title: `More dark chocolate.`,
+        friend: true
+    }
+    ,
+    {
+        id: 5,
+        title: `A good cup of coffee.`,
+        friend: true
+    }
+    ,
+    {
+        id: 6,
+        title: `Once upon a time...`,
+        friend: true
     }
 ];
 
@@ -99,6 +124,6 @@ process.on('uncaughtException', evt => {
 	console.log('Exception: ', evt);
 });
 
-app.listen(80, function() {
-	console.log('heroku open' + '\n');
+app.listen(3000, function() {
+	console.log('http://localhost:3000' + '\n');
 });

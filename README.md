@@ -31,7 +31,7 @@ Provides a set of reusable and accessible UI components.
 
 ## SVG Icons
 
- - https://github.com/callemall/material-ui/tree/master/src/svg-icons/action
+ - https://github.com/callemall/material-ui/tree/master/src/svg-icons
 
 ## Lodash
 

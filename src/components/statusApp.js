@@ -25,6 +25,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
+import IconButton from 'material-ui/IconButton';
+import AppBarIcon from 'material-ui/svg-icons/action/favorite';
+
 import { Grid, Flex, Box } from 'reflexbox'
 
 @observer
@@ -58,7 +61,10 @@ export default class StatusApp extends React.Component {
 		return (
       <MuiThemeProvider muiTheme={theme}>
         <div className="container" style={styles.container}>
-          <AppBar title="Wall" />
+          <AppBar
+            iconElementLeft={<IconButton><AppBarIcon /></IconButton>}
+            title="Wall"
+          />
           <Flex align="center" justify="space-around">
             <Box col={12} sm={12} md={6} p={0} m={0}>
               <StatusHeader statusStore={statusStore} viewStore={viewStore} />

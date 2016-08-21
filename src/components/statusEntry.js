@@ -43,7 +43,7 @@ export default class StatusEntry extends React.Component {
           ref="newField"
           className="new-status"
           autoFocus={true}
-          hintText="What's on your mind?"
+          hintText="What's on your heart?"
           value={this.state.entryText}
           onChange={this.handleChange}
           fullWidth={true}
