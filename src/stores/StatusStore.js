@@ -2,8 +2,7 @@ import {observable, computed, autorun} from 'mobx';
 
 import StatusModel from '../models/StatusModel'
 
-import * as Utils from '../vendor/js/utils';
-
+import uniqueId from 'lodash/uniqueId';
 
 export default class StatusStore {
 	@observable statuses = [];
@@ -37,7 +36,7 @@ export default class StatusStore {
 	}
 
 	addStatus (title) {
-		this.statuses.push(new StatusModel(this, Utils.uuid(), title, false));
+		this.statuses.push(new StatusModel(this, uniqueId, title, false));
 	}
 
 	toggleAll (checked) {

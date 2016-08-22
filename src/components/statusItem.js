@@ -25,7 +25,10 @@ export default class StatusItem extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
-		this.state = {editText: props.status.title};
+		this.state = {
+      editText: props.status.title,
+      showSave: false
+    };
 
     this.id = uniqueId('editField_');
 	}
@@ -83,9 +86,11 @@ export default class StatusItem extends React.Component {
             rows={1}
           />
         </CardText>
+        
         <CardActions style={styles.cardActions}>
           <FlatButton
             style={styles.flatButton}
+            className={this.state.showSave ? 'show' : 'hidden'}
             label="Save"
           />
         </CardActions>

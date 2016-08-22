@@ -117,6 +117,8 @@ app.get('*', function(req, res) {
 app.use((err, req, res, next) => {
 	console.error('Error on request %s %s\n', req.method, req.url);
 	console.error(err.stack + '\n');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	res.status(500).send("Server error");
 });
 
