@@ -5,10 +5,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
-  devtool: 'inline-source-map',
+  debug: true,
+  displayErrorDetails: true,
+  outputPathinfo: true,
+  devtool: 'sourcemap',
 
   entry: [
-    'webpack-hot-middleware/client',
+    // To connect a browser client to a webpack server & receive updates.
+    'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+    './src/public/main',
     './src/client'
   ],
   output: {

@@ -12,13 +12,19 @@ import React from 'react';
 global.navigator = { userAgent: 'all' };
 
 const app = express();
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')))
+app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
 const webpack = require('webpack');
+// Wrapper middleware for webpack. It serves the files emitted from webpack
+// over a connect server.
+// https://github.com/webpack/webpack-dev-middleware
 const webpackDevMiddleware = require('webpack-dev-middleware');
+// To connect a browser client to a webpack server & receive updates.
+// https://github.com/glenjamin/webpack-hot-middleware
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config');
 const compiler = webpack(config);
+
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
@@ -109,7 +115,7 @@ app.post('/api/statuses', function(req, res) {
 
 // example of handling 404 pages
 app.get('*', function(req, res) {
-    console.error('- 404 -\n');
+  console.error('- 404 -\n');
 	res.status(404).send('404 - Page Not Found');
 });
 
@@ -117,8 +123,10 @@ app.get('*', function(req, res) {
 app.use((err, req, res, next) => {
 	console.error('Error on request %s %s\n', req.method, req.url);
 	console.error(err.stack + '\n');
+
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
 	res.status(500).send("Server error");
 });
 
