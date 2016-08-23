@@ -20,9 +20,9 @@ export default class StatusHeader extends React.Component {
   render() {
     return (
       <header>
-      <div className="filters">
-      {this.renderMenu()}
-      </div>
+        <div className="filters">
+          {this.renderMenu()}
+        </div>
       </header>
     );
   }

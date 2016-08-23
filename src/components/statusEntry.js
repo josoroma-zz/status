@@ -20,7 +20,6 @@ export default class StatusEntry extends React.Component {
   }
 
   render() {
-
     const styles = {
       card: {
         padding: '16px',

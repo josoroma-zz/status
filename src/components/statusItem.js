@@ -53,7 +53,7 @@ export default class StatusItem extends React.Component {
 
     return (
       <Card style={styles.card} className={[
-        status.friend ? "friend": "",
+        status.friend ? "friend" : "",
         status === viewStore.statusBeingEdited ? "editing" : ""
       ].join(" ")}>
         <IconMenu style={styles.iconMenu}
