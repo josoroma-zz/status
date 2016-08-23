@@ -29,9 +29,9 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output
 app.use(webpackHotMiddleware(compiler));
 
 const renderFullPage = html => {
-	const initialState = { statuses };
+  const initialState = { statuses };
 
-	return `
+  return `
     <!doctype html>
     <html lang="utf-8">
       <head>
@@ -48,92 +48,88 @@ const renderFullPage = html => {
         <script src="/static/bundle.js"></script>
       </body>
     </html>
-	`
+  `
 };
 
 // Statuses are going to be stored here.
 let statuses = [
-    {
-        id: 1,
-        title: `A Spoonful of Sugar.`,
-        friend: false
-    },
-    {
-        id: 2,
-        title: `A box of chocolates.`,
-        friend: false
-    },
-    {
-        id: 3,
-        title: `Funny pictures of people shopping.`,
-        friend: false
-    }
-    ,
-    {
-        id: 4,
-        title: `More dark chocolate.`,
-        friend: true
-    }
-    ,
-    {
-        id: 5,
-        title: `A good cup of coffee.`,
-        friend: true
-    }
-    ,
-    {
-        id: 6,
-        title: `Once upon a time...`,
-        friend: true
-    }
+  {
+    id: 1,
+    title: `A Spoonful of Sugar.`,
+    friend: false
+  },
+  {
+    id: 2,
+    title: `A box of chocolates.`,
+    friend: false
+  },
+  {
+    id: 3,
+    title: `Funny pictures of people shopping.`,
+    friend: false
+  },
+  {
+    id: 4,
+    title: `More dark chocolate.`,
+    friend: true
+  },
+  {
+    id: 5,
+    title: `A good cup of coffee.`,
+    friend: true
+  },
+  {
+    id: 6,
+    title: `Once upon a time...`,
+    friend: true
+  }
 ];
 
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-	const statusStore = StatusStore.fromJS(statuses);
-	const viewStore = new ViewStore();
+  const statusStore = StatusStore.fromJS(statuses);
+  const viewStore = new ViewStore();
 
-	const initView = renderToString((
-		<StatusApp statusStore={statusStore} viewStore={viewStore} />
-	));
+  const initView = renderToString((
+    <StatusApp statusStore={statusStore} viewStore={viewStore} />
+  ));
 
-	const page = renderFullPage(initView);
+  const page = renderFullPage(initView);
 
-	res.status(200).send(page);
+  res.status(200).send(page);
 });
 
 app.post('/api/statuses', function(req, res) {
-	statuses = req.body.statuses;
-	if (Array.isArray(statuses)) {
-		console.log(`Updated statuses (${statuses.length})`);
-		res.status(201).send(JSON.stringify({ success: true }));
-	} else {
-		res.status(200).send(JSON.stringify({ success: false, error: "expected `statuses` to be array" }));
-	}
+  statuses = req.body.statuses;
+
+  if (Array.isArray(statuses)) {
+    console.log(`Updated statuses (${statuses.length})`);
+    res.status(201).send(JSON.stringify({ success: true }));
+  } else {
+    res.status(200).send(JSON.stringify({ success: false, error: "expected `statuses` to be array" }));
+  }
 });
 
 // example of handling 404 pages
 app.get('*', function(req, res) {
   console.error('- 404 -\n');
-	res.status(404).send('404 - Page Not Found');
+
+  res.status(404).send('404 - Page Not Found');
 });
 
 // global error catcher, need four arguments
 app.use((err, req, res, next) => {
-	console.error('Error on request %s %s\n', req.method, req.url);
-	console.error(err.stack + '\n');
+  console.error('Error on request %s %s\n', req.method, req.url);
+  console.error(err.stack + '\n');
 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-	res.status(500).send("Server error");
+  res.status(500).send("Server error");
 });
 
 process.on('uncaughtException', evt => {
-	console.log('Exception: ', evt);
+  console.log('Exception: ', evt);
 });
 
 app.listen(3000, function() {
-	console.log('http://localhost:3000' + '\n');
+  console.log('http://localhost:3000' + '\n');
 });

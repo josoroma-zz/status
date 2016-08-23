@@ -17,15 +17,15 @@ import { Grid, Flex, Box } from 'reflexbox'
 
 @observer
 export default class StatusHeader extends React.Component {
-	render() {
-		return (
-			<header>
-				<div className="filters">
-					{this.renderMenu()}
-				</div>
-			</header>
-		);
-	}
+  render() {
+    return (
+      <header>
+      <div className="filters">
+      {this.renderMenu()}
+      </div>
+      </header>
+    );
+  }
 
   renderMenu() {
     const statusStore = this.props.statusStore;
@@ -40,7 +40,7 @@ export default class StatusHeader extends React.Component {
       }
     };
 
-		return (
+    return (
       <Paper style={styles.paper}>
         <Flex>
           <Box col={6} p={0} m={0}>
@@ -74,10 +74,10 @@ export default class StatusHeader extends React.Component {
         </Flex>
       </Paper>
     )
-	}
+  }
 }
 
 StatusHeader.propTypes = {
-	viewStore: React.PropTypes.object.isRequired,
-	statusStore: React.PropTypes.object.isRequired
+  viewStore: React.PropTypes.object.isRequired,
+  statusStore: React.PropTypes.object.isRequired
 }

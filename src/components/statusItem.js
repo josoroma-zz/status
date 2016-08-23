@@ -22,19 +22,19 @@ const ENTER_KEY = 13;
 
 @observer
 export default class StatusItem extends React.Component {
-	constructor(props, context) {
-		super(props, context);
+  constructor(props, context) {
+    super(props, context);
 
-		this.state = {
+    this.state = {
       editText: props.status.title,
       showSave: false
     };
 
     this.id = uniqueId('editField_');
-	}
+  }
 
-	render() {
-		const {viewStore, status} = this.props;
+  render() {
+    const {viewStore, status} = this.props;
 
     const styles = {
       card: {
@@ -51,11 +51,11 @@ export default class StatusItem extends React.Component {
       }
     };
 
-		return (
-			<Card style={styles.card} className={[
-				status.friend ? "friend": "",
-				status === viewStore.statusBeingEdited ? "editing" : ""
-			].join(" ")}>
+    return (
+      <Card style={styles.card} className={[
+        status.friend ? "friend": "",
+        status === viewStore.statusBeingEdited ? "editing" : ""
+      ].join(" ")}>
         <IconMenu style={styles.iconMenu}
           iconButtonElement={
             <IconButton><MoreVertIcon /></IconButton>
@@ -64,12 +64,12 @@ export default class StatusItem extends React.Component {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <MenuItem
-            primaryText="Private"
-            onClick={this.handleToggle}
+          primaryText="Private"
+          onClick={this.handleToggle}
           />
           <MenuItem
-            primaryText="Delete"
-            onClick={this.handleDestroy}
+          primaryText="Delete"
+          onClick={this.handleDestroy}
           />
         </IconMenu>
         <CardText>
@@ -86,7 +86,6 @@ export default class StatusItem extends React.Component {
             rows={1}
           />
         </CardText>
-        
         <CardActions style={styles.cardActions}>
           <FlatButton
             style={styles.flatButton}
@@ -94,47 +93,47 @@ export default class StatusItem extends React.Component {
             label="Save"
           />
         </CardActions>
-			</Card>
-		);
-	}
+      </Card>
+    );
+  }
 
-	handleSubmit = (event) => {
-		const val = this.state.editText.trim();
+  handleSubmit = (event) => {
+    const val = this.state.editText.trim();
 
-		if (val) {
-			this.props.status.setTitle(val);
-			this.setState({editText: val});
-		} else {
-			this.handleDestroy();
-		}
+    if (val) {
+      this.props.status.setTitle(val);
+      this.setState({editText: val});
+    } else {
+      this.handleDestroy();
+    }
 
-		this.props.viewStore.statusBeingEdited = null;
-	};
+    this.props.viewStore.statusBeingEdited = null;
+  };
 
-	handleDestroy = () => {
-		this.props.status.destroy();
-		this.props.viewStore.statusBeingEdited = null;
-	};
+  handleDestroy = () => {
+    this.props.status.destroy();
+    this.props.viewStore.statusBeingEdited = null;
+  };
 
-	handleKeyDown = (event) => {
-		if (event.which === ESCAPE_KEY) {
-			this.setState({editText: this.props.status.title});
-			this.props.viewStore.statusBeingEdited = null;
-		} else if (event.which === ENTER_KEY) {
-			this.handleSubmit(event);
-		}
-	};
+  handleKeyDown = (event) => {
+    if (event.which === ESCAPE_KEY) {
+      this.setState({editText: this.props.status.title});
+      this.props.viewStore.statusBeingEdited = null;
+    } else if (event.which === ENTER_KEY) {
+      this.handleSubmit(event);
+    }
+  };
 
-	handleChange = (event) => {
-		this.setState({editText: event.target.value});
-	};
+  handleChange = (event) => {
+    this.setState({editText: event.target.value});
+  };
 
-	handleToggle = () => {
-		this.props.status.toggle();
-	};
+  handleToggle = () => {
+    this.props.status.toggle();
+  };
 }
 
 StatusItem.propTypes = {
-	status: React.PropTypes.object.isRequired,
-	viewStore: React.PropTypes.object.isRequired
+  status: React.PropTypes.object.isRequired,
+  viewStore: React.PropTypes.object.isRequired
 };

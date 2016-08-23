@@ -14,6 +14,6 @@ var viewStore = new ViewStore();
 statusStore.subscribeServerToStore();
 
 ReactDOM.render(
-	<StatusApp statusStore={statusStore} viewStore={viewStore}/>,
-	document.getElementById('app-status')
+  <StatusApp statusStore={statusStore} viewStore={viewStore}/>,
+  document.getElementById('app-status')
 );

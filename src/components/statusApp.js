@@ -28,12 +28,12 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import AppBarIcon from 'material-ui/svg-icons/action/favorite';
 
-import { Grid, Flex, Box } from 'reflexbox'
+import { Grid, Flex, Box } from 'reflexbox';
 
 @observer
 export default class StatusApp extends React.Component {
-	render() {
-		const {statusStore, viewStore} = this.props;
+  render() {
+    const {statusStore, viewStore} = this.props;
 
     const themeSettings = {
       appBar:{
@@ -58,7 +58,7 @@ export default class StatusApp extends React.Component {
 
     merge(theme, themeSettings);
 
-		return (
+    return (
       <MuiThemeProvider muiTheme={theme}>
         <div className="container" style={styles.container}>
           <AppBar
@@ -74,22 +74,23 @@ export default class StatusApp extends React.Component {
           </Flex>
         </div>
       </MuiThemeProvider>
-		);
-	}
+    );
+  }
 
-	componentDidMount() {
-		var viewStore = this.props.viewStore;
+  componentDidMount() {
+    var viewStore = this.props.viewStore;
 
-		var router = Router({
-			'/':       function() { viewStore.statusFilter = ALL_STATUSES; },
-			'/public': function() { viewStore.statusFilter = PUBLIC_STATUSES; },
-			'/friend': function() { viewStore.statusFilter = FRIEND_STATUSES; }
-		});
-		router.init('/');
-	}
+    var router = Router({
+      '/':       function() { viewStore.statusFilter = ALL_STATUSES; },
+      '/public': function() { viewStore.statusFilter = PUBLIC_STATUSES; },
+      '/friend': function() { viewStore.statusFilter = FRIEND_STATUSES; }
+    });
+    
+    router.init('/');
+  }
 }
 
 StatusApp.propTypes = {
-	viewStore: React.PropTypes.object.isRequired,
-	statusStore: React.PropTypes.object.isRequired
+  viewStore: React.PropTypes.object.isRequired,
+  statusStore: React.PropTypes.object.isRequired
 };

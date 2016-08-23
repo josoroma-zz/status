@@ -19,7 +19,7 @@ export default class StatusEntry extends React.Component {
     this.state = {entryText: ''};
   }
 
-	render() {
+  render() {
 
     const styles = {
       card: {
@@ -37,7 +37,7 @@ export default class StatusEntry extends React.Component {
       }
     };
 
-		return (
+    return (
       <Card style={styles.card}>
         <TextField
           ref="newField"
@@ -57,9 +57,9 @@ export default class StatusEntry extends React.Component {
             label="Save"
           />
         </CardActions>
-    </Card>
+      </Card>
     );
-	}
+  }
 
   handleNewStatusAction = (event) => {
     const input = this.state.entryText;
@@ -68,13 +68,13 @@ export default class StatusEntry extends React.Component {
       this.props.statusStore.addStatus(input);
       this.setState({entryText: ''});
     }
-	};
+  };
 
-	handleChange = (event) => {
+  handleChange = (event) => {
     this.setState({entryText: this.refs.newField.getValue()});
-	};
+  };
 }
 
 StatusEntry.propTypes = {
-	statusStore: React.PropTypes.object.isRequired
+  statusStore: React.PropTypes.object.isRequired
 };
