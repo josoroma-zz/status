@@ -64,12 +64,12 @@ export default class StatusItem extends React.Component {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <MenuItem
-          primaryText="Private"
-          onClick={this.handleToggle}
+            primaryText="Private"
+            onClick={this.handleToggle}
           />
           <MenuItem
-          primaryText="Delete"
-          onClick={this.handleDestroy}
+            primaryText="Delete"
+            onClick={this.handleDestroy}
           />
         </IconMenu>
         <CardText>
