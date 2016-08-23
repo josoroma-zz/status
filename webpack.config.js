@@ -36,7 +36,7 @@ module.exports = {
   postcss: [autoprefixer],
 
   resolve: {
-    extensions: ['', 'js', '.jsx', '.json', 'css', '.scss'],
+    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
     modulesDirectories: [
       'node_modules',
       path.resolve(__dirname, './node_modules')
